@@ -4015,3 +4015,9 @@ body {
   margin: 0;
   overflow: visible;
   clip: auto; }
+
+#testGraph circle {
+  fill: orangered;
+  opacity: 0.7; }
+  #testGraph circle:hover {
+    opacity: 1; }

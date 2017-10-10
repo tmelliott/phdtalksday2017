@@ -1,7 +1,5 @@
 $(document).ready(function() {
   // call functions etc here
-  console.log("The page is loaded.");
-
   Reveal.initialize({
     math: {
       jax: ["output/CommonHTML"],
@@ -12,4 +10,7 @@ $(document).ready(function() {
   		{ src: 'assets/revealjs/plugin/math/math.js', async: true }
   	]
   });
+
+  // more functions?
+  graphs();
 });

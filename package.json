@@ -24,6 +24,7 @@
   "homepage": "https://github.com/tmelliott/gulp-browsersync-reveal-d3#readme",
   "devDependencies": {
     "browser-sync": "^2.18.13",
+    "d3": "^4.11.0",
     "font-awesome": "^4.7.0",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-concat": "^2.6.1",

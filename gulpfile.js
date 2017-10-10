@@ -9,6 +9,7 @@ var reload = browserSync.reload;
 var jquery = './node_modules/jquery/';
 var bootstrap = './node_modules/bootstrap-sass/';
 var fontawesome = './node_modules/font-awesome/';
+var d3 = './node_modules/d3/build/';
 
 var assets = './assets/';
 var sassdir = assets + 'css/sass/';
@@ -38,6 +39,7 @@ gulp.task('scripts', function() {
               reveal + 'lib/js/*.js',
               // --- add plugins as necessary
               // reveal + 'plugin/math.js',
+              d3 + 'd3.min.js',
               scriptdir + '*.js'])
         .pipe(concat('app.min.js'))
         .pipe(uglify())
@@ -53,7 +55,7 @@ gulp.task('serve', ['sass', 'scripts'], function() {
         open: false
     });
 
-    gulp.watch([sassmain, sassdir + '*.sass'], ['sass']);
+    gulp.watch([sassmain, sassdir + '**/*.sass'], ['sass']);
     gulp.watch(scriptdir + '*.js', ['scripts']);
     gulp.watch(['*.html', 'slides/*', assets + 'js/app.min.js'], { cwd: ''}, reload);
 });
