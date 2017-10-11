@@ -6,6 +6,7 @@ $(document).ready(function() {
     // width: '100%',
     // margin: 0,
     progress: false,
+    transition: 'fade',
     history: true, // can unset this for final - makes reloading nicer
     math: {
       jax: ["output/CommonHTML"],

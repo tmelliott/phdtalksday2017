@@ -68,18 +68,20 @@ function addPointsToMap() {
       .attr("cy", function(d) { return d.pt.y; })
       .attr("r", 5)
       .attr("opacity", 0)
-        .transition().duration(function(d) { return Math.floor(Math.random() * 5000); })
-        .attr("opacity", 1)
-        .attr("r", 2);
+        .transition().delay(500)
+          .duration(function(d) { return Math.floor(Math.random() * 5000); })
+          .attr("opacity", 1)
+          .attr("r", 2);
 
   points_visible = true;
 }
 
 function removePoints() {
   aklsvg.selectAll("circle")
-    .transition().duration(function(d) { return Math.floor(Math.random() * 1000); })
-    .attr("opacity", 0)
-    .remove();
+    .transition()
+      .duration(function(d) { return Math.floor(Math.random() * 1000); })
+      .attr("opacity", 0)
+      .remove();
 
   points_visible = false;
 }
