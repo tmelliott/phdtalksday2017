@@ -11,3 +11,4 @@ dat.df <- do.call(rbind, lapply(dat, function(x) {
                lng = x$vehicle$position$longitude,
                route = x$vehicle$trip$route_id)
 }))
+write.csv(dat.df, "../data/vehicles.csv", quote = FALSE, row.names = FALSE)
