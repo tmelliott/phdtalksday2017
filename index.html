@@ -2,20 +2,41 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>New Presentation</title>
+    <title>Stat Teachers' Day 2017 | Predicting Bus Arrival</title>
     <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+        integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+        crossorigin=""/>
   </head>
   <body>
+    <div id="aklMap"></div>
     <div class="reveal">
       <div class="slides">
-        <section id="titlepage">
-          <h2>Presentation Title</h2>
 
-          <div id="testGraph"></div>
+        <section id="titlepage">
+          <h2>Predicting bus arrival time</h2>
+          <h4>using estimated road network state</h4>
+        </section>
+
+        <section>
+          To do list:
+          <ul>
+            <li class="completed">map of auckland</li>
+            <li>add points for vehicle locations (*not real-time)</li>
+            <li>choose a "random" point, show its route, and zoom in</li>
+            <li>Q: what's this bus doing? how long till it reaches subsequent stops?</li>
+          </ul>
+        </section>
+
+        <section data-state="showpoints">
+
         </section>
       </div>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+      integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+      crossorigin=""></script>
     <script src="assets/js/app.min.js"></script>
   </body>
 </html>

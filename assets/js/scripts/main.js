@@ -1,6 +1,12 @@
 $(document).ready(function() {
   // call functions etc here
   Reveal.initialize({
+    controls: false,
+    // height: '100%',
+    // width: '100%',
+    // margin: 0,
+    progress: false,
+    history: true, // can unset this for final - makes reloading nicer
     math: {
       jax: ["output/CommonHTML"],
   		// mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
