@@ -1,10 +1,10 @@
 function graphs() {
   // load all the graphs ...
 
-  var aklmap = aklMap();
+  aklMap();
 
-  var busdata = [];
-  var points_visible = false;
+  busdata = [];
+  points_visible = false;
   d3.csv("data/vehicles.csv", function(d) {
     return {
       id: d.id,
@@ -18,7 +18,7 @@ function graphs() {
 
   Reveal.addEventListener('titlepage', function() {
     // remove points, if they exist!
-    points_visible = removePoints();
+    removePoints();
   });
   Reveal.addEventListener('showpoints', function() {
     if (busdata.length == 0) {
@@ -27,16 +27,15 @@ function graphs() {
     }
     // add points, if they don't already
     if (points_visible) return;
-    points_visible = addPointsToMap(busdata, aklmap);
+    addPointsToMap(busdata, aklmap);
   });
 }
 
 
-function aklMap(map) {
-  var zoom = 11;
-  var aklmap = new L.Map("aklMap", {
+function aklMap() {
+  aklmap = new L.Map("aklMap", {
     center: [-36.845794, 174.860478],
-    zoom: zoom,
+    zoom: 11,
     zoomControl: false,
     attributionControl: false
   });
@@ -46,27 +45,47 @@ function aklMap(map) {
       maxZoom: 19
   }).addTo(aklmap);
   // L.control.attribution({position: 'bottomleft'}).addTo(aklmap);
-
-  // aklmap._initPathRoot();
-
-
-  return aklmap;
 }
 
 
-function addPointsToMap(data, map) {
-  var svg = d3.select(map.getPanes().overlayPane)
+function addPointsToMap() {
+  aklsvg = d3.select(aklmap.getPanes().overlayPane)
         .append("svg")
           .attr("height", $("#aklMap").height())
-          .attr("width", $("#aklMap").width()),
-      g = svg.append("g");
-  var points = svg.selectAll("circle")
-    .data(data).enter()
-      .append("circle");
+          .attr("width", $("#aklMap").width());
+        //  g = aklsvg.append("g");
 
-  return true;
+  // modify the data
+  busdata.forEach(function(d) {
+    d.pt = project(d.lng, d.lat);
+  });
+
+  aklbuses = aklsvg.selectAll("circle")
+    .data(busdata, function(d) { return d.id; })
+    .enter()
+      .append("circle")
+      .attr("cx", function(d) { return d.pt.x; })
+      .attr("cy", function(d) { return d.pt.y; })
+      .attr("r", 5)
+      .attr("opacity", 0)
+        .transition().duration(function(d) { return Math.floor(Math.random() * 5000); })
+        .attr("opacity", 1)
+        .attr("r", 2);
+
+  points_visible = true;
 }
 
 function removePoints() {
-  return false;
+  aklsvg.selectAll("circle")
+    .transition().duration(function(d) { return Math.floor(Math.random() * 1000); })
+    .attr("opacity", 0)
+    .remove();
+
+  points_visible = false;
+}
+
+
+function project(x, y) {
+  var pt = aklmap.latLngToLayerPoint(new L.LatLng(y, x));
+  return pt;
 }
