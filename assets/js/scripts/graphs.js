@@ -16,7 +16,7 @@ function graphs() {
     busdata = data;
   });
 
-  Reveal.addEventListener('titlepage', function() {
+  Reveal.addEventListener('aim', function() {
     // remove points, if they exist!
     removePoints();
   });
