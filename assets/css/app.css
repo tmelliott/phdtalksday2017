@@ -4071,7 +4071,50 @@ body {
   z-index: -10; }
   #aklMap circle {
     fill: orangered; }
+  #aklMap .maplocation {
+    opacity: 0.5;
+    stroke: orangered;
+    stroke-opacity: 0.5;
+    stroke-width: 20px; }
+  #aklMap .line {
+    fill: none;
+    stroke: orangered;
+    stroke-width: 5px;
+    stroke-opacity: 0.5; }
+
+.cols2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: -calc(2 * $gutter); }
+  .cols2 .col {
+    margin: 1em; }
+
+#compimages {
+  position: fixed;
+  height: 200px;
+  width: 400px;
+  top: 50%;
+  right: 0;
+  background-position: center;
+  background-size: cover; }
 
 li.completed {
   text-decoration: line-through;
   opacity: 0.4; }
+
+ul.list-unstyled {
+  list-style: none; }
+
+.reveal .text-right {
+  text-align: right; }
+
+.reveal .text-center {
+  text-align: center; }

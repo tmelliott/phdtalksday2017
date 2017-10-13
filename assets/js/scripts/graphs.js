@@ -16,6 +16,8 @@ function graphs() {
     busdata = data;
   });
 
+  myhistory();
+
   Reveal.addEventListener('aim', function() {
     // remove points, if they exist!
     removePoints();
@@ -44,13 +46,16 @@ function aklMap() {
       subdomains: 'abcd',
       maxZoom: 19
   }).addTo(aklmap);
+  aklsvg = d3.select(aklmap.getPanes().overlayPane)
+        .append("svg");
   // L.control.attribution({position: 'bottomleft'}).addTo(aklmap);
 }
 
 
 function addPointsToMap() {
+  // d3.select(".aklsvgoverlay").remove();
   aklsvg = d3.select(aklmap.getPanes().overlayPane)
-        .append("svg")
+        .select("svg").attr("class", "aklsvgoverlay")
           .attr("height", $("#aklMap").height())
           .attr("width", $("#aklMap").width());
         //  g = aklsvg.append("g");

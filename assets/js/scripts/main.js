@@ -19,9 +19,11 @@ $(document).ready(function() {
   });
 
 
+  compstat();
+
   // more functions?
   graphs();
 });
 
 // variables we'll need to use throughout the place
-var aklmap, busdata, points_visible, aklsvg, aklbuses;
+var aklmap, busdata, points_visible, aklsvg, aklbuses, pts = [];
