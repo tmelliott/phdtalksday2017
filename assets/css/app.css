@@ -4106,9 +4106,17 @@ body {
   background-position: center;
   background-size: cover; }
 
+#HSsublist {
+  position: fixed;
+  bottom: 50px;
+  right: 10px; }
+
 li.completed {
   text-decoration: line-through;
   opacity: 0.4; }
+
+.striked {
+  text-decoration: line-through; }
 
 ul.list-unstyled {
   list-style: none; }
@@ -4118,3 +4126,17 @@ ul.list-unstyled {
 
 .reveal .text-center {
   text-align: center; }
+
+.westlakelogo {
+  -webkit-transform: translate(1em, -40%);
+          transform: translate(1em, -40%); }
+
+.westlakeimg {
+  -webkit-transform: translate(200px, -15%);
+          transform: translate(200px, -15%);
+  height: 300px; }
+
+.uoalogo {
+  -webkit-transform: translate(1em, -30%);
+          transform: translate(1em, -30%);
+  width: 300px; }
