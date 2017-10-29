@@ -30,44 +30,57 @@
 
         <!-- <section data-state="myhistory"></section> -->
         <section data-state="myhistory-born"></section>
-        <section data-state="myhistory-grewup"></section>
+        <section data-state="myhistory-grewup">
+          <div class="stretch"></div>
+          <ul class="">
+            <li class="fragment">wanted to be a vet (until Yr13!)</li>
+            <li class="fragment">"hyponotised" by computers
+              (self-taught web-dev from age 15)</li>
+          </ul>
+        </section>
         <section data-state="myhistory-highschool">
           <div class="stretch"></div>
           <ul class="list-unstyled" id="HSsublist">
             <li class="fragment" data-fragment-index="1">
-              <span class="english">English</span>
-              <span class="fragment" data-fragment-index="2">French</span>
+              <strong>CIE</strong>
             </li>
-            <li class="fragment" data-fragment-index="1">Maths</li>
-            <li class="fragment" data-fragment-index="1">Chemistry</li>
             <li class="fragment" data-fragment-index="1">
-              <span class="fragment highlight-blue" data-fragment-index="3">Biology</span>
+              <span class="english">English, AS</span>
+              <span class="fragment" data-fragment-index="2">French, AS</span>
+            </li>
+            <li class="fragment" data-fragment-index="1"><span class="fragment highlight-red" data-fragment-index="4">Maths, 
+              AS<span class="fragment" data-fragment-index="2">+A2</span></span>
+              <span class="fragment subjcomment current-visible" data-fragment-index="3">calculus + statistics &rarr;</span>
+            </li>
+            <li class="fragment" data-fragment-index="1">Chemistry, 
+              AS<span class="fragment" data-fragment-index="2">+A2</span>
+              <!-- <span class="fragment subjcomment current-visible" data-fragment-index="4"> &rarr;</span> -->
+            </li>
+            <li class="fragment" data-fragment-index="1">
+              <span class="fragment highlight-blue" data-fragment-index="6">Biology</span>, 
+              AS<span class="fragment" data-fragment-index="2">+A2</span>
+              <span class="fragment subjcomment current-visible" data-fragment-index="5">"What is the null?" &rarr;</span>
             </li>
           </ul>
         </section>
         <section data-state="myhistory-uoa">
           <ul class="" id="UOAsublist">
-            <li class="fragment">
+            <li class="fragment text-left">
               <strong>Bachelor of Science</strong><br>
-              <span class="marine">Marine Science</span>
+              <span class="marine">Marine Science</span><br>
+              <span class="fragment" style="margin-left: 1em">&rarr; 2nd semester, "data analysis" - using R!</span><br>
               <span class="fragment">Biological Sciences</span>
               <span class="fragment">+ Statistics</span>
             </li>
             <li class="fragment">
-              <strong>Bachelor of Science Honours</strong>
-              <span class="fragment">(statistics)</span>
-            </li>
-            <li class="fragment">
-              <strong>Master of Science</strong>
-              <span class="fragment">(statistics)</span>
-            </li>
-            <li class="fragment">
-              <strong>Doctor of Philosopy</strong>
-              <span class="fragment">(statistics!)</span>
+              BSc Honours, Masters, and now PhD &hellip;<br>
+              <em>all in statistics!</em>
             </li>
           </ul>
           <div class="stretch"></div>
         </section>
+
+        <section data-state="endofhist"></section>
 
         <section data-state="compstats" id="compstats">
           <h4>Computational Statistics</h4>
@@ -112,29 +125,19 @@
             <strong>Aim:</strong>
             <p>
                 Use
-                <span class="fragment highlight-red">
-                    travel times of previous buses</span>
+                <!-- <span class="fragment highlight-red"> -->
+                    travel times of previous buses<!-- </span> -->
                 travelling along
-                <span class="fragment highlight-blue">
-                    road segments</span>
+                <!-- <span class="fragment highlight-blue"> -->
+                    road segments<!-- </span> -->
                 to improve
-                <span class="fragment highlight-green">
-                    arrival time predictions</span>
+                <!-- <span class="fragment highlight-green"> -->
+                    arrival time predictions<!-- </span> -->
                 of upcoming buses
             </p>
 
 
         </section>
-
-        <!-- <section>
-          To do list:
-          <ul>
-            <li class="completed">map of auckland</li>
-            <li>add points for vehicle locations (*not real-time)</li>
-            <li>choose a "random" point, show its route, and zoom in</li>
-            <li>Q: what's this bus doing? how long till it reaches subsequent stops?</li>
-          </ul>
-        </section> -->
 
         <section data-state="showpoints">
             <p class="fragment">

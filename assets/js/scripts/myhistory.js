@@ -22,9 +22,11 @@ function myhistory() {
   });
 
 
+  Reveal.addEventListener("endofhist", function() {
+    removeLns()
+  });
   Reveal.addEventListener("compstats", function() {
     removePts();
-    removeLns()
   });
 
 }
@@ -37,7 +39,7 @@ function strikeText(event) {
     if (f > 0) $(".english").addClass("striked")
     else $(".english").removeClass("striked");
   } else if (state.value == "myhistory-uoa") {
-    if (f > 0) $(".marine").addClass("striked")
+    if (f > 1) $(".marine").addClass("striked")
     else $(".marine").removeClass("striked");
   }
 }
@@ -220,7 +222,7 @@ function uoa() {
         .style("stroke-opacity", null);
 
   aklsvg.append("svg:image")
-    .attr("xlink:href", "/statteachersday2017/assets/img/uoa.png")
+    .attr("xlink:href", "assets/img/uoa.png")
     .attr("x", lnpos[lnpos.length-1].x)
     .attr("y", lnpos[lnpos.length-1].y)
     .attr("opacity", 0)
