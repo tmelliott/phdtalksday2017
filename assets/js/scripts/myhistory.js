@@ -158,7 +158,7 @@ function highschool() {
         .style("stroke-opacity", null);
 
   aklsvg.append("svg:image")
-    .attr("xlink:href", "/statteachersday2017/assets/img/westlakelogo.png")
+    .attr("xlink:href", "assets/img/westlakelogo.png")
     .attr("x", lnpos[lnpos.length-1].x)
     .attr("y", lnpos[lnpos.length-1].y)
     .attr("opacity", 0)
@@ -166,7 +166,7 @@ function highschool() {
         .attr("opacity", 1)
         .attr("class", "westlakelogo");
   aklsvg.append("svg:image")
-    .attr("xlink:href", "/statteachersday2017/assets/img/westlake.jpg")
+    .attr("xlink:href", "assets/img/westlake.jpg")
     .attr("x", lnpos[lnpos.length-1].x)
     .attr("y", lnpos[lnpos.length-1].y)
     .attr("class", "westlakeimg")
