@@ -26,4 +26,4 @@ $(document).ready(function() {
 });
 
 // variables we'll need to use throughout the place
-var aklmap, busdata, points_visible, aklsvg, aklbuses, pts = [];
+var aklmap, busdata, points_visible, aklsvg, aklbuses, pts = [], routepath, particles;

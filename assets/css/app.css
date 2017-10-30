@@ -4081,6 +4081,12 @@ body {
     stroke: orangered;
     stroke-width: 5px;
     stroke-opacity: 0.5; }
+  #aklMap .routeline {
+    fill: none;
+    stroke: white;
+    stroke-width: 5px; }
+  #aklMap circle.particle {
+    fill: magenta; }
 
 .cols2 {
   display: -webkit-box;
