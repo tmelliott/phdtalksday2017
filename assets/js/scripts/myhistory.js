@@ -35,6 +35,7 @@ function strikeText(event) {
   var state = Reveal.getCurrentSlide().attributes["data-state"];
   if (state == undefined) return;
   var f = Reveal.getState().indexf;
+  
   if (state.value == "myhistory-highschool") {
     if (f > 0) $(".english").addClass("striked")
     else $(".english").removeClass("striked");

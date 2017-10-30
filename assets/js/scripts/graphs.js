@@ -43,6 +43,8 @@ function graphs() {
   Reveal.addEventListener('route110', function() {
     demoRoute();
   });
+  Reveal.addEventListener("fragmentshown", doParticles);
+  Reveal.addEventListener("fragmenthidden", doParticles);
 }
 
 
@@ -170,8 +172,23 @@ function addRouteLine() {
   particles.forEach(function(d) { 
     d.pt = path.getPointAtLength(d.d); 
   });
+}
 
-  aklbuses = aklsvg.selectAll(".particle")
+function doParticles() {
+  var state = Reveal.getCurrentSlide().attributes["data-state"];
+  if (state == undefined) return;
+  if (state.value != "route110") return;
+  var f = Reveal.getState().indexf;
+  switch(f) {
+    case 0: 
+      addParticles();
+    case 1:
+      console.log("ok");
+  }
+}
+
+function addParticles() {
+   aklbuses = aklsvg.selectAll(".particle")
     .data(particles, function(d) { return d.id; })
     .enter()
       .append("circle")
@@ -182,6 +199,5 @@ function addRouteLine() {
       .attr("opacity", 0)
         .transition().delay(500)
           .duration(500)
-          .attr("opacity", 1)
-          // .attr("r", 5);
+          .attr("opacity", 1);
 }
