@@ -40,7 +40,7 @@ function strikeText(event) {
     if (f > 0) $(".english").addClass("striked")
     else $(".english").removeClass("striked");
   } else if (state.value == "myhistory-uoa") {
-    if (f > 1) $(".marine").addClass("striked")
+    if (f > 0) $(".marine").addClass("striked")
     else $(".marine").removeClass("striked");
   }
 }

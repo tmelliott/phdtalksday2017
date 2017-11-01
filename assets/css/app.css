@@ -4086,7 +4086,10 @@ body {
     stroke: white;
     stroke-width: 5px; }
   #aklMap circle.particle {
-    fill: magenta; }
+    fill: magenta;
+    z-index: 3; }
+  #aklMap circle.realbus {
+    z-index: 10; }
 
 .cols2 {
   display: -webkit-box;

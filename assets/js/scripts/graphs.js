@@ -149,29 +149,43 @@ function addRouteLine() {
       .y(function(d) { return d.pt.y; });
 
   routepath = aklsvg.append("path")
+    .data([demoroute])
     .attr("class", "routeline")
-    .attr("d", lineFun(demoroute))
+    .attr("d", lineFun)
     .attr("opacity", 0)
     .transition()
       .duration(500)
       .attr("opacity", 1);
 
-  var path = routepath._groups[0][0];
+  var path = routepath.node();
   particles = [
-    {"d": 100}, 
-    {"d": 110}, 
-    {"d": 120}, 
-    {"d": 120}, 
-    {"d": 130}, 
-    {"d": 130}, 
-    {"d": 130}, 
-    {"d": 140}, 
-    {"d": 140}, 
-    {"d": 150}
+    {"d": 100, "v": 300}, 
+    {"d": 110, "v": 340}, 
+    {"d": 120, "v": 310}, 
+    {"d": 120, "v": 280}, 
+    {"d": 130, "v": 290}, 
+    {"d": 130, "v": 300}, 
+    {"d": 130, "v": 280}, 
+    {"d": 140, "v": 330}, 
+    {"d": 140, "v": 310}, 
+    {"d": 150, "v": 280}
   ];
   particles.forEach(function(d) { 
     d.pt = path.getPointAtLength(d.d); 
   });
+
+  realbus = {"lat": -36.832347, "lng": 174.617887};
+  realbus.pt = project(realbus.lng, realbus.lat);
+  aklsvg.append("circle")
+    .attr("class", "realbus")
+    .attr("cx", realbus.pt.x)
+    .attr("cy", realbus.pt.y)
+    .attr("r", 0)
+    .attr("opacity", 0)
+    .transition().delay(500)
+      .duration(500)
+      .attr("r", 7)
+      .attr("opacity", 1);
 }
 
 function doParticles() {
@@ -182,22 +196,52 @@ function doParticles() {
   switch(f) {
     case 0: 
       addParticles();
+      break;
     case 1:
-      console.log("ok");
+      moveParticles(1);
+      break;
+    case 2:
+      console.log("eep");
+      break;
   }
 }
 
 function addParticles() {
-   aklbuses = aklsvg.selectAll(".particle")
+  aklsvg.select(".realbus")
+    .transition().duration(600)
+      .attr("opacity", 0)
+      .remove();
+  aklbuses = aklsvg.selectAll(".particle")
     .data(particles, function(d) { return d.id; })
     .enter()
       .append("circle")
       .attr("class", "particle")
-      .attr("cx", function(d) { return d.pt.x; })
-      .attr("cy", function(d) { return d.pt.y; })
+      .attr("transform", function(d) { return "translate(" + d.pt.x + "," + d.pt.y + ")"; })
       .attr("r", 5)
       .attr("opacity", 0)
         .transition().delay(500)
           .duration(500)
           .attr("opacity", 1);
+    // .update()
+    //   .transition().duration(10000)
+    //   .attrTween("transform", function(d) { return translateParticle(d.d, d.d + 1000); });
+}
+
+function translateParticle() {
+  var path = routepath.node();
+  var L = path.getTotalLength();
+  return function(d, i, a) {
+    return function(t) {
+      var p = path.getPointAtLength(d.d + t * (d.d + d.v - d.d));
+      return "translate(" + p.x + "," + p.y + ")";
+    };
+  };
+}
+
+function moveParticles(i) {
+  aklsvg.selectAll(".particle")
+    .transition()
+      .duration(10000)
+      .ease(d3.easeLinear)
+      .attrTween("transform", translateParticle());
 }
