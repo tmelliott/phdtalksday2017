@@ -11,7 +11,7 @@ function showimg(event) {
     if (f < 0 || f >= imgs.length) {
       $("#compimages").css("background-image", "none");
     } else {
-      $("#compimages").css("background-image", "url(../assets/img/" + imgs[f] + ")");
+      $("#compimages").css("background-image", "url(assets/img/" + imgs[f] + ")");
     }
   }
 }
