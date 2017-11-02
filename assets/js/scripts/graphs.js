@@ -159,16 +159,16 @@ function addRouteLine() {
 
   var path = routepath.node();
   particles = [
-    {"d": 100, "v": 300}, 
-    {"d": 110, "v": 340}, 
-    {"d": 120, "v": 310}, 
-    {"d": 120, "v": 280}, 
-    {"d": 130, "v": 290}, 
-    {"d": 130, "v": 300}, 
-    {"d": 130, "v": 280}, 
-    {"d": 140, "v": 330}, 
-    {"d": 140, "v": 310}, 
-    {"d": 150, "v": 280}
+    {"d": 100, "v": 300, "it": 1}, 
+    {"d": 110, "v": 340, "it": 1}, 
+    {"d": 120, "v": 310, "it": 1}, 
+    {"d": 120, "v": 280, "it": 1}, 
+    {"d": 130, "v": 290, "it": 1}, 
+    {"d": 130, "v": 300, "it": 1}, 
+    {"d": 130, "v": 280, "it": 1}, 
+    {"d": 140, "v": 330, "it": 1}, 
+    {"d": 140, "v": 310, "it": 1}, 
+    {"d": 150, "v": 280, "it": 1}
   ];
   particles.forEach(function(d) { 
     d.pt = path.getPointAtLength(d.d); 
@@ -203,6 +203,9 @@ function doParticles() {
     case 2:
       resampleParticles();
       break;
+    case 3:
+      moveParticles();
+      break;
   }
 }
 
@@ -223,8 +226,7 @@ function addParticles() {
       .attr("opacity", 0)
         .transition().delay(500)
           .duration(500)
-          .attr("opacity", 1)
-    .exit().remove();
+          .attr("opacity", 1);
 }
 
 function translateParticle() {
@@ -232,14 +234,28 @@ function translateParticle() {
   var L = path.getTotalLength();
   return function(d, i, a) {
     return function(t) {
-      var p = path.getPointAtLength(d.d + t * (d.d + d.v - d.d));
+      var p = path.getPointAtLength(d.d + t * (d.v));
       return "translate(" + p.x + "," + p.y + ")";
     };
   };
 }
 
 function moveParticles() {
-  var p2 = {"lat": -36.853830, "lng": 174.644537};
+  var p2;
+  switch (particles[0].it) {
+    case 1:
+      p2 = {"lat": -36.853830, "lng": 174.644537};
+      break;
+    case 2:
+      var p2 = {"lat": -36.871718, "lng": 174.690972};
+      break;
+    case 3:
+      var p2 = {"lat": -36.864646, "lng": 174.733029};
+      break;
+    case 4:
+      var p2 = {"lat": -36.850464, "lng": 174.762619};
+      break;
+  }
   p2.pt = project(p2.lng, p2.lat);
   aklsvg.selectAll(".particle")
     .transition()
@@ -248,7 +264,7 @@ function moveParticles() {
       .attrTween("transform", translateParticle());
 
   aklsvg.append("circle")
-    .attr("class", ".realbus")
+    .attr("class", "realbus")
     .attr("cx", p2.pt.x)
     .attr("cy", p2.pt.y)
     .attr("opacity", 0)
@@ -259,5 +275,39 @@ function moveParticles() {
 }
 
 function resampleParticles() {
+  var newparticles = [], ind = [];
+  switch(particles[0].it) {
+    case 1:
+      ind = [2, 4, 5, 6, 9, 2, 4, 5, 6, 9];
+      break;
+    case 2:
+      ind = [0, 2, 4, 5, 8, 0, 2, 4, 5, 8];
+      break;
+    case 3:
+      ind = [3, 4, 6, 9, 3, 4, 6, 9, 3, 4];
+      break;
+    case 4:
+      ind = [3, 3, 3, 3, 3, 9, 9, 9, 9, 9];
+      break;
+  }
+  for (i=0; i<ind.length; i++) {
+    var newd = particles[ind[i]].d + particles[ind[i]].v;
+    newparticles[i] = {
+      "d": newd,
+      "v": particles[i].v,
+      "pt": routepath.node().getPointAtLength(newd),
+      "it": particles[i].it + 1
+    };
+  }
 
+  particles = newparticles;
+  aklsvg.selectAll(".particle")
+    .data(particles)
+    .attr("transform", function(d) { return "translate(" + d.pt.x + "," + d.pt.y + ")"; });
+
+  aklsvg.select(".realbus")
+    .transition().delay(500).duration(600)
+      .attr("opacity", 0)
+      .attr("r", 0)
+      .remove();
 }

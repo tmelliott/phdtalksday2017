@@ -4089,7 +4089,8 @@ body {
     fill: magenta;
     z-index: 3; }
   #aklMap circle.realbus {
-    z-index: 10; }
+    z-index: 10;
+    fill: yellow; }
 
 .cols2 {
   display: -webkit-box;
