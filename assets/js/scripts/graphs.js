@@ -198,10 +198,10 @@ function doParticles() {
       addParticles();
       break;
     case 1:
-      moveParticles(1);
+      moveParticles();
       break;
     case 2:
-      console.log("eep");
+      resampleParticles();
       break;
   }
 }
@@ -210,7 +210,9 @@ function addParticles() {
   aklsvg.select(".realbus")
     .transition().duration(600)
       .attr("opacity", 0)
+      .attr("r", 0)
       .remove();
+
   aklbuses = aklsvg.selectAll(".particle")
     .data(particles, function(d) { return d.id; })
     .enter()
@@ -221,10 +223,8 @@ function addParticles() {
       .attr("opacity", 0)
         .transition().delay(500)
           .duration(500)
-          .attr("opacity", 1);
-    // .update()
-    //   .transition().duration(10000)
-    //   .attrTween("transform", function(d) { return translateParticle(d.d, d.d + 1000); });
+          .attr("opacity", 1)
+    .exit().remove();
 }
 
 function translateParticle() {
@@ -238,10 +238,26 @@ function translateParticle() {
   };
 }
 
-function moveParticles(i) {
+function moveParticles() {
+  var p2 = {"lat": -36.853830, "lng": 174.644537};
+  p2.pt = project(p2.lng, p2.lat);
   aklsvg.selectAll(".particle")
     .transition()
       .duration(10000)
       .ease(d3.easeLinear)
       .attrTween("transform", translateParticle());
+
+  aklsvg.append("circle")
+    .attr("class", ".realbus")
+    .attr("cx", p2.pt.x)
+    .attr("cy", p2.pt.y)
+    .attr("opacity", 0)
+    .attr("r", 0)
+    .transition().delay(10000-300).duration(300)
+      .attr("opacity", 1)
+      .attr("r", 7);
+}
+
+function resampleParticles() {
+
 }
