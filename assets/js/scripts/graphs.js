@@ -45,6 +45,11 @@ function graphs() {
   });
   Reveal.addEventListener("fragmentshown", doParticles);
   Reveal.addEventListener("fragmenthidden", doParticles);
+
+  Reveal.addEventListener("segSpeeds", function() {
+    removePoints();
+    setTimeout(addPointsToMap, 1000);
+  });
 }
 
 
@@ -204,6 +209,18 @@ function doParticles() {
       resampleParticles();
       break;
     case 3:
+      moveParticles();
+      break;
+    case 4:
+      resampleParticles();
+      break;
+    case 5:
+      moveParticles();
+      break;
+    case 6:
+      resampleParticles();
+      break;
+    case 7:
       moveParticles();
       break;
   }
