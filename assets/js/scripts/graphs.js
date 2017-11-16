@@ -25,6 +25,17 @@ function graphs() {
     demoroute = data;
   });
 
+  d3.csv("data/segments.csv", function(d) {
+      return {
+        id: d.id,
+        speed: +d.speed,
+        from: [+d.ystart, +d.xstart],
+        to: [+d.yend, +d.xend]
+      }
+  }, function(data) {
+    segments = data;
+  });
+
   myhistory();
 
   Reveal.addEventListener('aim', function() {
@@ -48,7 +59,15 @@ function graphs() {
 
   Reveal.addEventListener("segSpeeds", function() {
     removePoints();
-    setTimeout(addPointsToMap, 1000);
+    
+  });
+
+  Reveal.addEventListener("fragmentshown", doSegmentStuff);
+  Reveal.addEventListener("fragmenthidden", doSegmentStuff);
+
+  Reveal.addEventListener("inzight", function() {
+    removeSegmentLines();
+    removePoints();
   });
 }
 
@@ -99,7 +118,8 @@ function addPointsToMap() {
   points_visible = true;
 }
 
-function removePoints() {
+function removePoints(speed) {
+  if (speed == undefined) speed = 1000;
   if (aklmap.getZoom () != 11) {
     var cnt = [-36.845794, 174.860478];
     aklmap.flyTo(cnt, 11);
@@ -107,7 +127,7 @@ function removePoints() {
 
   aklsvg.selectAll("circle")
     .transition()
-      .duration(function(d) { return Math.floor(Math.random() * 1000); })
+      .duration(function(d) { return Math.floor(Math.random() * speed); })
       .attr("opacity", 0)
       .remove();
 
@@ -327,4 +347,88 @@ function resampleParticles() {
       .attr("opacity", 0)
       .attr("r", 0)
       .remove();
+}
+
+
+
+function doSegmentStuff() {
+  var state = Reveal.getCurrentSlide().attributes["data-state"];
+  if (state == undefined) return;
+  if (state.value != "segSpeeds") return;
+  var f = Reveal.getState().indexf;
+  switch(f) {
+    case 0: 
+      addPointsToMap();
+      createSegmentsLines();
+      break;
+    case 1:
+      showSegmentLines();
+      break;
+  }
+}
+
+function createSegmentsLines() {
+  aklsvg = d3.select(aklmap.getPanes().overlayPane)
+      .select("svg").attr("class", "aklsvgoverlay")
+        .attr("height", $("#aklMap").height())
+        .attr("width", $("#aklMap").width());
+
+  aklsvg.selectAll("line")
+    .transition().duration(200)
+      .attr("opacity", 0)
+      .remove();
+
+  // modify the data
+  segments.forEach(function(d) {
+    d.From = project(d.from[1], d.from[0]);
+    d.To = project(d.to[1], d.to[0]);
+  });
+  var segmentstokeep = [];
+  for(i=0;i<segments.length;i++) {
+    if (sizeD(segments[i]) < 120 && !isNaN(segments[i].speed)) 
+      segmentstokeep.push(segments[i]);
+  }
+  segments = segmentstokeep;
+}
+
+function showSegmentLines() {
+  // removePoints(30000);
+  aklsvg.selectAll("circle")
+    .transition().duration(10000)
+      .attr("opacity", 0)
+      .remove();
+
+  var col1 = "red",
+      col2 = "yellow",
+      col3 = "green";
+  var colour = d3.scaleLinear()
+      .domain([0, 20, 50, 60, 61, 100])
+      .range([col1, col2, col3, col3, col1, col3]);
+  var seglines = aklsvg.selectAll("line")
+      .data(segments)
+      .enter().append("line")
+        .attr("x1", function(d) { return d.From.x; })
+        .attr("y1", function(d) { return d.From.y; })
+        .attr("x2", function(d) { return d.To.x; })
+        .attr("y2", function(d) { return d.To.y; })
+        .attr("stroke", function(d) {
+          return colour(d.speed);
+        })
+        .attr("opacity", 0)
+        .transition().duration(1000)
+          .delay(function(d) { return Math.floor(Math.random() * 30000); })
+          .attr("opacity", 0.5);
+
+}
+
+function removeSegmentLines() {
+  aklsvg.selectAll("line")
+    .transition().duration(1000)
+      .attr("opacity", 0)
+      .remove();
+}
+
+function sizeD(d) {
+  var len = Math.sqrt(Math.pow(d.From.x - d.To.x, 2) + Math.pow(d.From.y - d.To.y, 2));
+  return len;
 }

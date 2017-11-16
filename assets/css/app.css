@@ -4091,6 +4091,8 @@ body {
   #aklMap circle.realbus {
     z-index: 10;
     fill: yellow; }
+  #aklMap line {
+    stroke-width: 3; }
 
 .cols2 {
   display: -webkit-box;
