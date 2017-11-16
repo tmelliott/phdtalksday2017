@@ -364,6 +364,10 @@ function doSegmentStuff() {
     case 1:
       showSegmentLines();
       break;
+    case 2:
+      removeSegmentLines();
+      removePoints();
+      break;
   }
 }
 
