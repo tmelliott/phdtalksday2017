@@ -12,6 +12,7 @@
 @import url(../revealjs/lib/css/zenburn.css);
 @import url(../revealjs/lib/font/league-gothic/league-gothic.css);
 @import url(../revealjs/lib/font/source-sans-pro/source-sans-pro.css);
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
 html, body, .reveal div, .reveal span, .reveal applet, .reveal object, .reveal iframe,
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, .reveal p, .reveal blockquote, .reveal pre,
 .reveal a, .reveal abbr, .reveal acronym, .reveal address, .reveal big, .reveal cite, .reveal code,
@@ -1695,6 +1696,15 @@ body {
   background: #42affa;
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+.reveal .cursive {
+  font-family: "Indie Flower", cursive;
+  font-weight: normal;
+  text-transform: none; }
+
+.reveal img.bare {
+  border: none;
+  background: none; }
 
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
@@ -4083,14 +4093,14 @@ body {
     stroke-opacity: 0.5; }
   #aklMap .routeline {
     fill: none;
-    stroke: white;
+    stroke: darkblue;
     stroke-width: 5px; }
   #aklMap circle.particle {
-    fill: magenta;
+    fill: white;
     z-index: 3; }
   #aklMap circle.realbus {
     z-index: 10;
-    fill: yellow; }
+    fill: orangered; }
   #aklMap line {
     stroke-width: 3; }
 
@@ -4108,6 +4118,14 @@ body {
   margin: -calc(2 * $gutter); }
   .cols2 .col {
     margin: 1em; }
+
+.reveal ul.stacked {
+  position: relative;
+  width: 100%; }
+  .reveal ul.stacked li {
+    position: absolute;
+    width: 100%;
+    text-align: center; }
 
 #compimages {
   position: fixed;

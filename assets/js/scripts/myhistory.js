@@ -25,7 +25,7 @@ function myhistory() {
   Reveal.addEventListener("endofhist", function() {
     removeLns()
   });
-  Reveal.addEventListener("compstats", function() {
+  Reveal.addEventListener("compstats1", function() {
     removePts();
   });
 
