@@ -36,8 +36,6 @@ function graphs() {
     segments = data;
   });
 
-  myhistory();
-
   Reveal.addEventListener('aim', function() {
     // remove points, if they exist!
     removePoints();
@@ -79,7 +77,7 @@ function aklMap() {
     zoomControl: false,
     attributionControl: false
   });
-  L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
       subdomains: 'abcd',
       maxZoom: 19

@@ -18,9 +18,6 @@ $(document).ready(function() {
   	]
   });
 
-
-  compstat();
-
   // more functions?
   graphs();
 });
