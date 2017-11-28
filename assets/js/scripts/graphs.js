@@ -55,9 +55,8 @@ function graphs() {
   Reveal.addEventListener("fragmentshown", doParticles);
   Reveal.addEventListener("fragmenthidden", doParticles);
 
-  Reveal.addEventListener("segSpeeds", function() {
+  Reveal.addEventListener("busmodel", function() {
     removePoints();
-    
   });
 
   Reveal.addEventListener("fragmentshown", doSegmentStuff);

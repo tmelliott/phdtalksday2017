@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Stat Teachers' Day 2017 | Predicting Bus Arrival</title>
+    <title>PhD Talks Day 2017 | Predicting Bus Arrival</title>
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
         integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
@@ -14,15 +14,13 @@
       <div class="slides">
 
         <section data-state="titlepage">
-          <h2>Predicting bus arrival times</h2>
-          <h4 class="cursive">using estimated road network state</h4>
-          <p style="margin-top: 3em">Tom Elliott</p>
-          <img src="assets/img/uoa.png" alt="University of Auckland" width = "300" class="bare">
+          <h2 class="cursive">Predicting bus arrival times using estimated road network state</h2>
+          <p style="margin-top: 5em" class="cursive">Tom Elliott</p>
+          <!-- <img src="assets/img/uoa.png" alt="University of Auckland" width = "300" class="bare"> -->
         </section>
 
         <section data-state="aim">
-            <p class="cursive text-left">Aim &hellip;</p>
-            <p class="cursiv">
+            <p class="cursive">
                 Use travel times of previous buses travelling along road segments 
                 to improve arrival time predictions of upcoming buses
             </p>
@@ -30,9 +28,12 @@
 
         </section>
 
-        <section data-state="showpoints"></section>
+        <section data-state="showpoints">
+          <h4 class="cursive stretch">Bus model</h4>
+        </section>
 
         <section data-state="route110">
+            <h4 class="cursive">Bus model: particle filter</h4>
             <p class="stretch"></p>
             <ol class="hidden">
               <li class="fragment">Imaginary fleet, clustered around real bus</li>
@@ -45,15 +46,24 @@
               <li class="fragment">Travel &hellip;</li>
             </ol>
         </section>
+
+        <section data-state="busmodel">
           
+          <p class="cursive text-left">All we need to do is &hellip;</p>
+          <ul class="text-left cursive ">
+            <li class="fragment">Model all buses in Auckland (1000+ at peak hour)</li>
+            <li class="fragment">In real-time, target is 30 seconds or faster</li>
+            <li class="fragment">Goodbye R, hello C++</li>
+          </ul>
         
+        </section>
 
         <section data-state="segSpeeds">
-          <p class="text-left" style="display:none">
-            <span class="fragment">Model all buses</span>
-            <span class="fragment">to estimate "real-time" speed along roads</span>
-            <span class="fragment"></span>
-          </p>
+          <ul class="text-left cursive ">
+            <li class="fragment">blah blah blah</li>
+            <li class="fragment">to estimate "real-time" speed along roads</li>
+            <li class="fragment"></li>
+          </ul>
         </section>
 
         <!-- <section>
