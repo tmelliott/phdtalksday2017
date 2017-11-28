@@ -1,14 +1,12 @@
-With the latest advancements in technology, notably the GPS, 
-it is now possible to obtain position information of all buses
-in Auckland via a publicaly accesible API.
-However, turning these positions into arrival time estimates 
-is more complicated than it sounds - 
-factors such as traffic congestion, wait times at intermediate 
-bus stops, and delays caused by traffic lights all introduce
-additional uncertainty and, more often than not, result in the bus
-taking longer than originally thought.
-My approach is to independently model all buses, but then combine
-this by estimating the state (vehicle speed) along individual 
-roads in the network; this way, the network state is updated as buses
-drive along their routes. The network state can then be used to 
-make a more informed and, hopefully, more accurate arrival time prediction.
+An estimated time of arrival (ETA) that increases is inherantly bad:
+your bus is 5 minutes away, and then two minutes later, its 6 minutes away!
+The main reason for this is that traffic conditions between you and the bus
+aren't being taken into account.
+I'm investigating an approach to predicting bus arrival that models 
+buses (implemented using a particle filter) to estimate their speed
+along roads within the network, which is in turn used to update the 
+traffic state (that is, how long it takes a bus to travel along
+an individual road). This information can then be used to 
+make more informed predictions for upcoming buses,
+hopefully producing ETAs that account - somewhat accurately - for
+the congestion between you and that bus.

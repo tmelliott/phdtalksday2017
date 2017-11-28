@@ -18,6 +18,8 @@ $(document).ready(function() {
   	]
   });
 
+  loadoldETAs();
+
   // more functions?
   graphs();
 });

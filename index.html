@@ -19,13 +19,28 @@
           <!-- <img src="assets/img/uoa.png" alt="University of Auckland" width = "300" class="bare"> -->
         </section>
 
-        <section data-state="aim">
+        <!-- <section data-state="aim">
             <p class="cursive">
                 Use travel times of previous buses travelling along road segments 
                 to improve arrival time predictions of upcoming buses
             </p>
 
 
+        </section> -->
+
+        <section data-state="currentETAs">
+          <p class="cursive text-left">
+            Currently, it works like this &hellip;
+          </p>
+          <ol class="cursive">
+            <li class="fragment">Bus arrives at a stop, delay is recorded</li>
+            <li class="fragment">ETA = scheduled arrival time + delay</li>
+            <li class="fragment">Repeat for all stops until it reaches yours &hellip;<br>
+              <span class="fragment">assuming the delay is recorded and relayed to AT</span>
+            </li>
+          </ol>
+
+          <div id="ETA1" class="etagraph stretch"></div>
         </section>
 
         <section data-state="showpoints">
