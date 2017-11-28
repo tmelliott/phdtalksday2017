@@ -1,0 +1,14 @@
+With the latest advancements in technology, notably the GPS, 
+it is now possible to obtain position information of all buses
+in Auckland via a publicaly accesible API.
+However, turning these positions into arrival time estimates 
+is more complicated than it sounds - 
+factors such as traffic congestion, wait times at intermediate 
+bus stops, and delays caused by traffic lights all introduce
+additional uncertainty and, more often than not, result in the bus
+taking longer than originally thought.
+My approach is to independently model all buses, but then combine
+this by estimating the state (vehicle speed) along individual 
+roads in the network; this way, the network state is updated as buses
+drive along their routes. The network state can then be used to 
+make a more informed and, hopefully, more accurate arrival time prediction.
