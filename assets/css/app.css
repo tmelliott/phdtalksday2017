@@ -4110,6 +4110,16 @@ body {
   stroke-width: 3; }
 .etagraph svg .routestop {
   stroke: black; }
+.etagraph svg .bus {
+  border: solid 1px black;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%); }
+.etagraph svg .stopschedule {
+  fill: darkblue;
+  text-decoration: underline; }
+  .etagraph svg .stopschedule.old {
+    fill: #990000;
+    text-decoration: line-through; }
 
 .cols2 {
   display: -webkit-box;
@@ -4151,4 +4161,7 @@ ul.list-unstyled {
   text-align: center; }
 
 ul.hidden, ol.hidden {
+  display: none; }
+
+span.hideme {
   display: none; }
