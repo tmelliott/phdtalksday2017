@@ -1,12 +1,10 @@
 An estimated time of arrival (ETA) that increases is inherantly bad:
 your bus is 5 minutes away, and then two minutes later, its 6 minutes away!
 The main reason for this is that traffic conditions between you and the bus
-aren't being taken into account.
-I'm investigating an approach to predicting bus arrival that models 
-buses (implemented using a particle filter) to estimate their speed
-along roads within the network, which is in turn used to update the 
-traffic state (that is, how long it takes a bus to travel along
-an individual road). This information can then be used to 
-make more informed predictions for upcoming buses,
-hopefully producing ETAs that account - somewhat accurately - for
-the congestion between you and that bus.
+aren't being taken into account by the current system.
+I'm developing a predictive framework that models buses 
+(implemented using a particle filter) 
+to estimate their speed along roads within the network, 
+which is in turn used to update the road network state (travel times along roads). 
+ETAs can then be based on near-real-time traffic
+conditions as estimated by recent buses traveling along the same roads.
