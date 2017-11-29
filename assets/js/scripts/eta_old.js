@@ -41,6 +41,7 @@ function loadoldETAs () {
     Reveal.addEventListener("fragmenthidden", oldETAs2);
 
     Reveal.addEventListener("theProblem", clearETAs);
+    Reveal.addEventListener("etagraphOld", clearETAs);
 }
 
 function clearETAs () {

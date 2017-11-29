@@ -19,6 +19,7 @@ $(document).ready(function() {
   });
 
   loadoldETAs();
+  loadEtaGraph();
 
   // more functions?
   graphs();
