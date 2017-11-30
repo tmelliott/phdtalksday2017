@@ -14,7 +14,7 @@
       <div class="slides">
 
         <section data-state="titlepage">
-          <h2 class="cursive">Predicting bus arrival times using estimated road network state</h2>
+          <h3 class="cursive">Predicting bus arrival times using estimated road network state</h3>
           <p style="margin-top: 5em" class="cursive">Tom Elliott</p>
           <!-- <img src="assets/img/uoa.png" alt="University of Auckland" width = "300" class="bare"> -->
         </section>
@@ -30,7 +30,7 @@
       
         <section data-state="theProblem">
           <h2 class="cursive">Part 1: Motivation</h2>
-          <p class="cursive">i.e., what's wrong with the current system?</p>
+          <p class="cursive">What's wrong with the current system?</p>
         </section>
 
         <section data-state="currentETAs">
@@ -52,15 +52,34 @@
 
         <section data-state="etagraphOld">
           <p class="cursive text-left">ETAs for a person waiting at the 7:40 stop:</p>
-          <div id="ETAgraph" class="stretch"></div>
+          <div id="ETAgraph" class="etagraph stretch"></div>
+          <ul class="cursive text-left">
+            <li>Initial expected waiting time: <span class="fragment">10 minutes</span></li>
+            <li>Actual waiting time: <span  class="fragment">16 minutes</span></li>
+          </ul>
         </section>
 
-        <section data-state="showpoints">
-          <h4 class="cursive stretch">Bus model</h4>
+        <section data-state="ourSolution">
+          <h2 class="cursive">Part 2: Proposed solution</h2>
+          <ol class="cursive">
+            <li class="fragment">Develop improved model to estimate vehicle speeds</li>
+            <li class="fragment">Update network state as buses travel along roads</li>
+            <li class="fragment">Use network state to estimate arrival times</li>
+          </ol>
         </section>
 
-        <section data-state="route110">
-            <h4 class="cursive">Bus model: particle filter</h4>
+        <section data-state="busmodel" data-transition="slide-in fade-out">
+          <h4 class="cursive ">1. Bus model: particle filter</h4>
+          <ul>
+            <li class="fragment">Flexibility: easily handles asymmetry, multimodality</li>
+            <li class="fragment">Intuitive likelihood (distance between two points)</li>
+            <li class="fragment">Transition function can be as complicated as necessary</li>
+          </ul>
+          <p class="stretch"></p>
+        </section>
+
+        <section data-state="busmodel2" data-transition="fade">
+            <h4 class="stretch">1. Bus model: particle filter</h4>
             <p class="stretch"></p>
             <ol class="hidden">
               <li class="fragment">Imaginary fleet, clustered around real bus</li>
@@ -74,28 +93,55 @@
             </ol>
         </section>
 
-        <section data-state="busmodel">
-          
+        <section data-state="busmodel3" data-transition="fade-in slide-out">
+          <h4 class="cursive">1. Bus model: particle filter</h4>
           <p class="cursive text-left">All we need to do is &hellip;</p>
           <ul class="text-left cursive ">
             <li class="fragment">Model all buses in Auckland (1000+ at peak hour)</li>
             <li class="fragment">In real-time, target is 30 seconds or faster</li>
             <li class="fragment">Goodbye R, hello C++</li>
           </ul>
-        
+          <p class="stretch"></p>
         </section>
 
-        <section data-state="segSpeeds">
-          <ul class="text-left cursive ">
-            <li class="fragment">blah blah blah</li>
-            <li class="fragment">to estimate "real-time" speed along roads</li>
-            <li class="fragment"></li>
+        <section data-state="networkmodel" data-transition="slide-in fade-out">
+          <h4 class="">2. Network Model</h4>
+          <ul class="text-left cursive">
+            <li class="fragment">Road segment = stretch of road between two intersections</li>
+            <li class="fragment">Independent of route</li>
+            <li class="fragment">State = [travel time, variance]</li>
+            <li class="fragment">Data = estimated travel time of buses along segment</li>
           </ul>
+          <p class="stretch"></p>
         </section>
 
-        <!-- <section>
-          <h1>Thank you!</h1>
-        </section> -->
+        <section data-state="segSpeeds" data-transition="fade-in slide-out">
+          <h4 class="">2. Network Model</h4>
+          <ol class="">
+            <li class="fragment">Model all buses in real time</li>
+            <li class="fragment">Update network state as buses traverse segments</li>
+          </ol>
+          <p class="stretch"></p>
+        </section>
+
+        <section data-state="prediction">
+          <h4>3: Arrival time prediction</h4>
+  
+          <ul>
+            <li class="fragment">Sum travel time of road segments along the route</li>
+            <li class="fragment">For each particle to obtain a distribution</li>
+            <li class="fragment">Include additional uncertainty for traffic lights, intermediate stops</li>
+            <li class="fragment">Prediction intervals to account for uncertainty<br> (e.g., 10-16 minutes)</li>
+          </ul>        
+
+          <p class="stretch"></p>
+        </section>
+
+        <section data-state="end">
+          <!-- <p class="stretch"></p> -->
+          <!-- <p>End of the line.</p> -->
+          <h2>Thank you!</h2>
+        </section>
       </div>
     </div>
 

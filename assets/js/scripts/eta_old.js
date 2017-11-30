@@ -41,12 +41,13 @@ function loadoldETAs () {
     Reveal.addEventListener("fragmenthidden", oldETAs2);
 
     Reveal.addEventListener("theProblem", clearETAs);
-    Reveal.addEventListener("etagraphOld", clearETAs);
+    // Reveal.addEventListener("etagraphOld", clearETAs);
 }
 
 function clearETAs () {
     etasvg.selectAll("circle").remove();
     etasvg.selectAll(".bus").remove();
+    etasvg.selectAll("text").remove();
 }
 
 function oldETAs () {

@@ -34,35 +34,48 @@ function graphs() {
       }
   }, function(data) {
     segments = data;
+    var state = Reveal.getCurrentSlide().attributes["data-state"];
+    if (state == undefined) return;
+    if (state.value == "busmodel") addPointsToMap();
   });
 
   Reveal.addEventListener('aim', function() {
     // remove points, if they exist!
     removePoints();
   });
-  Reveal.addEventListener('showpoints', function() {
+
+  Reveal.addEventListener('ourSolution', removePoints);
+
+  Reveal.addEventListener('busmodel', function() {
     if (busdata.length == 0) {
       alert("Data isn't loaded yet :(");
       return;
     }
+    removeSegmentLines();
+
     // add points, if they don't already
-    if (points_visible) return;
-    addPointsToMap(busdata, aklmap);
+    removePoints();
+    setTimeout(function() {
+      addPointsToMap(busdata, aklmap);
+    }, 1000);
   });
-  Reveal.addEventListener('route110', function() {
+  Reveal.addEventListener('busmodel2', function() {
     demoRoute();
   });
   Reveal.addEventListener("fragmentshown", doParticles);
   Reveal.addEventListener("fragmenthidden", doParticles);
 
-  Reveal.addEventListener("busmodel", function() {
+  Reveal.addEventListener("busmodel3", function() {
     removePoints();
+    // setTimeout(function() {
+    //   addPointsToMap();
+    // }, 2000);
   });
 
   Reveal.addEventListener("fragmentshown", doSegmentStuff);
   Reveal.addEventListener("fragmenthidden", doSegmentStuff);
 
-  Reveal.addEventListener("inzight", function() {
+  Reveal.addEventListener("prediction", function() {
     removeSegmentLines();
     removePoints();
   });
@@ -213,7 +226,7 @@ function addRouteLine() {
 function doParticles() {
   var state = Reveal.getCurrentSlide().attributes["data-state"];
   if (state == undefined) return;
-  if (state.value != "route110") return;
+  if (state.value != "busmodel2") return;
   var f = Reveal.getState().indexf;
   switch(f) {
     case 0: 

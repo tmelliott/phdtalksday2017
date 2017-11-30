@@ -1697,11 +1697,6 @@ body {
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
 
-.reveal .cursive {
-  font-family: "Indie Flower", cursive;
-  font-weight: normal;
-  text-transform: none; }
-
 .reveal img.bare {
   border: none;
   background: none; }
@@ -4120,6 +4115,10 @@ body {
   .etagraph svg .stopschedule.old {
     fill: #990000;
     text-decoration: line-through; }
+.etagraph svg .line {
+  fill: none;
+  stroke: black;
+  stroke-width: 3px; }
 
 .cols2 {
   display: -webkit-box;
